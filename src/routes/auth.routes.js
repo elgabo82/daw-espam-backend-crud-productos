@@ -10,6 +10,6 @@ const { autenticar } = require('../middlewares/auth.middleware');
 
 router.post('/registrar', registrar);
 router.post('/login', login);
-router.get('/perfil', autenticar, peril);
+router.get('/perfil', autenticar, perfil);
 
 module.exports = router;
