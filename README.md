@@ -37,6 +37,7 @@ nodemon.js src/server.js ó node
 
 Contenido del archivo .env
 
+```bash
 PORT=5000
 HTTPS_PORT=3543
 DB_HOST=servidor
@@ -53,8 +54,9 @@ SSL_ENABLED=true
 SSL_KEY_PATH=./src/assets/certs/privkey.pem
 SSL_CERT_PATH=./src/assets/certs/cert.pem
 SSL_CA_PATH=./src/assets/certs/chain.pem
-###
+```
 
+###
 Revisar la información relacionada de las bases de datos.
 P.D: Actualmente MariaDB/MySQL
 
