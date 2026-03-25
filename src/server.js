@@ -49,7 +49,7 @@ const iniciarServidor = async() => {
     try {
         await db.sequelize.authenticate();
         console.log('Conexión exitosa a la base de datos.');
-        await db.sequelize.sync({alter: true});
+        await db.sequelize.sync({alter: true, force: true});
         console.log('Modelos sincronizados correctamente.');
 
         app.listen(PORT, ()=> {
