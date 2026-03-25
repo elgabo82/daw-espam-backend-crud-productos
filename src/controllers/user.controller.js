@@ -10,7 +10,7 @@ const getUsuarios = async (req, res)=> {
     try {
         const usuarios = await User.findAll({
             attributes: {exclude: ['password']},
-            include: [{ model: 'Rol', as: 'rol', attributes: ['id', 'nombre']}]
+            include: [{ model: Rol, as: 'rol', attributes: ['id', 'nombre']}]
         });
         return respuestaExitosa(res, 200, 'Se obtuvieron todos los usuarios con éxito.', usuarios);
 
@@ -23,7 +23,7 @@ const getUsuarioId = async (req, res)=> {
     try {
         const usuario = await User.findByPk(req.params.id, {
             attributes: { exclude: ['password']},
-            include: [{model: 'Rol', as: 'rol', attributes: ['id', 'nombre']}]
+            include: [{model: Rol, as: 'rol', attributes: ['id', 'nombre']}]
         });
 
         if (!usuario) {
@@ -63,7 +63,7 @@ const crearUsuario = async(req, res)=>{
 
         const usuarioCreado = await User.findByPk(usuario.id, {
             attributes: { exclude: ['password']},
-            include: [{model: 'Rol', as: 'rol', attributes: ['id', 'nombre']}]
+            include: [{model: Rol, as: 'rol', attributes: ['id', 'nombre']}]
         });
 
         return respuestaExitosa(res, 200, 'Usuario creado correctamente.', usuario);
@@ -98,7 +98,7 @@ const actualizarUsuario = async (req, res)=> {
 
         const usuarioActualizado = await User.findByPk(id, {
             attributes: { exclude: ['password']},
-            include: [{ model: 'Rol', as: 'rol', attributes: ['id', 'nombre']}]
+            include: [{ model: Rol, as: 'rol', attributes: ['id', 'nombre']}]
         });
 
         return respuestaExitosa(res, 200, 'Usuario actualizado correctamente.', usuarioActualizado);

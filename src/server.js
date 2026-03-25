@@ -52,9 +52,9 @@ const iniciarServidor = async() => {
         await db.sequelize.sync({alter: true});
         console.log('Modelos sincronizados correctamente.');
 
-        /*app.listen(PORT, ()=> {
+        app.listen(PORT, ()=> {
             console.log(`Servidor funcionando en el puerto: ${PORT}`);
-        });*/
+        });
 
         if (SSL_ENABLED) {
             const opcionesSSL = cargarSSL();

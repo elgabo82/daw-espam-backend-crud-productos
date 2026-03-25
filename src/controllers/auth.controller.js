@@ -69,10 +69,9 @@ const login = async(req, res) => {
             return respuestaErronea(res, 400, 'Correo y clave son obligatorios.');
         }
 
-
         const usuario = await User.findOne({
             where: {email},
-            include: [{model: 'Rol', as: 'rol', attributes: ['id', 'nombre']}]
+            include: [{model: Rol, as: 'rol', attributes: ['id', 'nombre']}]
         });
 
         if (!usuario) {
@@ -101,11 +100,13 @@ const login = async(req, res) => {
                 email: usuario.email,
                 password: usuario.password,
                 estado: usuario.estado,
-                rol: usuario.rol
+                rolId: usuario.rolId
             },
             token
         });
     } catch (error) {
+        console.log(error);
+        console.log(req.body)
         return respuestaErronea(res, 500, 'Error al iniciar sesión.', error.message);
     }
 };
@@ -114,9 +115,10 @@ const perfil = async (req, res) => {
     try {
         const usuario = await User.findByPk(req.usuario.id, {
             attributes: {exclude: ['password']},
-            include: [{model: 'Rol', as: 'rol', attributes: ['id', 'nombres']}]
+            include: [{model: Rol, as: 'rol', attributes: ['id', 'nombres']}]
         });
-
+        console.log(usuario)
+        
         if (!usuario) {
             return respuestaErronea(res, 404, 'Usuario no encontrado.');
         }

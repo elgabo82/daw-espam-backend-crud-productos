@@ -8,7 +8,7 @@ const { respuestaExitosa, respuestaErronea } = require('../utils/response');
 const getProductos = async (req, res)=> {
     try {
         const productos = await Product.findAll({
-            include: [ { model: 'Category', as: 'categoria' }]
+            include: [ { model: Category, as: 'categoria' }]
         });
 
         return respuestaExitosa(res, 200, 'Productos cargados con éxito.', productos);
@@ -20,7 +20,7 @@ const getProductos = async (req, res)=> {
 const getProductoId = async (req, res)=> {
     try {
         const producto = await Product.findByPk(req.params.id, {
-            include: [{model: 'Category', as: 'categoria'}]
+            include: [{model: Category, as: 'categoria'}]
         });
 
         if (!producto) {
@@ -57,7 +57,7 @@ const crearProducto = async (req, res)=>{
         });
 
         const productoCreado = await Product.findByPk(producto.id, {
-            include: [{model: 'Category', as: 'categoria'}]
+            include: [{model: Category, as: 'categoria'}]
         });
 
         return respuestaExitosa(res, 200, 'Producto creado correctamente.', producto);
@@ -94,7 +94,7 @@ const actualizarProducto = async (req, res)=> {
         });
 
         const actualizar = await Product.findByPk(req.params.id, {
-            include: [{model: 'Category', as: 'categoria'}]
+            include: [{model: Category, as: 'categoria'}]
         });
 
         return respuestaExitosa(res, 200, 'Producto actualizado correctamente.', actualizar);

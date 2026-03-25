@@ -9,13 +9,15 @@ const {
     getRoles,
     crearRol,
     actualizarRol,
-    borrarRol
+    borrarRol,
+    getRolId
 } = require('../controllers/rol.controller');
 
 const { autenticar } = require('../middlewares/auth.middleware');
 const { autorizar } = require('../middlewares/role.middleware');
 
 router.get('/', autenticar, autorizar('admin'), getRoles);
+router.get('/:id', autenticar, autorizar('admin'), getRolId);
 router.post('/', autenticar, autorizar('admin'), crearRol);
 router.put('/:id', autenticar, autorizar('admin'), actualizarRol);
 router.delete('/:id', autenticar, autorizar('admin'), borrarRol);

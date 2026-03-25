@@ -10,7 +10,7 @@ const getCategorias = async (req, res)=> {
         const categorias = await Category.findAll({
             include: [
                 {
-                    model: 'Product',
+                    model: Product,
                     as: 'productos'
                 }
             ]
@@ -24,7 +24,7 @@ const getCategorias = async (req, res)=> {
 const getCategoriaId = async (req, res)=> {
     try {
         const categoria = await Category.findByPk(req.params.id, {
-            include: [{model: 'Product', as: 'productos'}]
+            include: [{model: Product, as: 'productos'}]
         });
 
         if (!categoria) {

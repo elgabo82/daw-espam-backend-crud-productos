@@ -15,6 +15,23 @@ const getRoles = async (req, res) => {
     }
 };
 
+
+const getRolId = async (req, res) => {
+    try {
+        const rol = await Rol.findByPk(req.params.id);
+
+        if (!rol) {
+            return respuestaErronea(res, 404, 'Rol no encontrado.');
+        }
+
+        return respuestaExitosa(res, 200, 'Rol encontrado.', rol);
+
+    } catch (error) {
+        return respuestaErronea(res, 500, 'Error al obtener el rol.', error.message);
+    }
+};
+
+
 const crearRol = async (req, res) => {
     try {
         const { nombre, descripcion } = req.body;
@@ -74,6 +91,7 @@ const borrarRol = async (req, res)=> {
 
 module.exports = {
     getRoles,
+    getRolId,
     crearRol,
     actualizarRol,
     borrarRol
